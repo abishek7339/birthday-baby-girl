@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Replace existing meta tag with this -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Happy Birthday</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor">
+        <div class="cursor-inner"></div>
+        <div class="cursor-trail"></div>
+    </div>
+    
+    <div class="glitter-container"></div>
+    
+    <div class="container">
+        <h1>Happy Birthday Papa..💗</h1>
+        <div class="greeting"></div>
+        <button class="cta-button">Click to Enter Our World 💕</button>
+    </div>
+
+    <!-- Music Player -->
+    <div id="music-player">
+        <audio id="bg-music" loop>
+            <source src="music.mp3" type="audio/mpeg">
+            <source src="music-1.ogg" type="audio/ogg">
+        </audio>
+        <button id="music-toggle" class="music-btn">
+            <span id="music-icon">🎵</span>
+            <span class="music-text">Music: ON</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

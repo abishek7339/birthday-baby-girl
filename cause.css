@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@700&family=Quicksand:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ffe6e6, #e6e6ff, #ffebf5);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+.custom-cursor {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s;
+}
+
+.custom-cursor svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.5));
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 3rem;
+    color: #ff69b4;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+    margin-bottom: 2rem;
+    animation: bounce 1s ease infinite;
+}
+
+.reason-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+}
+
+.reason-text {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.gif-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.reason-card:hover .gif-overlay {
+    opacity: 1;
+}
+
+.shuffle-button {
+    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: white;
+    margin: 2rem 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+    font-family: 'Comic Neue', cursive;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.shuffle-button:hover {
+    transform: scale(1.1);
+}
+
+.floating {
+    position: fixed;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+}
+
+.ending-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.ending-text {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2rem;
+    color: #ff69b4;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.teddy-hug {
+    width: 200px;
+    margin: 0 auto;
+    transform: scale(0);
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .reason-card { margin: 1rem; }
+    .reason-text { font-size: 1rem; }
+}
+.shuffle-button {
+    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: white;
+    margin: 2rem 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Comic Neue', cursive;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.shuffle-button.story-mode {
+    background: linear-gradient(45deg, #9b6dff, #ff6dc7);
+    transform: scale(1.1);
+}
+
+.shuffle-button:hover {
+    transform: scale(1.1);
+}
+
+.shuffle-button.story-mode:hover {
+    transform: scale(1.2);
+}
+
+.reason-counter {
+    font-size: 0.9rem;
+    color: #ff69b4;
+    margin-top: 1rem;
+    opacity: 0.7;
+}
+
+/* Music Player Styles for cause.css */
+#music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.music-btn {
+    background: rgba(255, 105, 180, 0.9);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.music-btn:hover {
+    transform: scale(1.05);
+    background: rgba(255, 105, 180, 1);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+}
+
+#music-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.music-btn.muted #music-icon {
+    transform: scale(0.8);
+    opacity: 0.7;
+}
+
+.music-text {
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .music-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .music-text {
+        display: none;
+    }
+}
+
+
+/* Glitter Cursor for cause.html */
+.cursor-glitter {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-glitter-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,182,193,0.8) 0%, rgba(255,105,180,0.6) 30%, rgba(255,20,147,0.4) 70%, transparent 100%);
+    box-shadow: 
+        0 0 20px rgba(255, 182, 193, 0.8),
+        0 0 40px rgba(255, 105, 180, 0.6),
+        0 0 60px rgba(255, 20, 147, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.5);
+    animation: pulse 2s ease-in-out infinite alternate;
+}
+
+.cursor-glitter-trail {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,182,193,0.7) 50%, transparent 100%);
+    filter: blur(5px);
+    opacity: 0.7;
+    animation: trailEffect 0.5s linear infinite;
+}
+
+/* Glitter particles */
+.glitter-particle-cause {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+    pointer-events: none;
+    z-index: 9998;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+}
+
+.glitter-container-cause {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+/* Cursor animations */
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 
+            0 0 15px rgba(255, 182, 193, 0.7),
+            0 0 30px rgba(255, 105, 180, 0.5),
+            0 0 45px rgba(255, 20, 147, 0.3);
+    }
+    100% {
+        transform: scale(1.2);
+        box-shadow: 
+            0 0 25px rgba(255, 182, 193, 1),
+            0 0 50px rgba(255, 105, 180, 0.8),
+            0 0 75px rgba(255, 20, 147, 0.6);
+    }
+}
+
+@keyframes trailEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes glitterFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes glitterTwinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Mobile touch improvements */
+button, .cta-button, .shuffle-button, .goodbye-btn, .music-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Prevent text selection on mobile */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Better mobile scrolling */
+html {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+/* Fix for mobile hover states */
+@media (hover: none) {
+    .reason-card:hover, .memory-card:hover {
+        transform: none;
+    }
+    
+    button:hover, .cta-button:hover, .shuffle-button:hover {
+        transform: none;
+    }
+}
+
+/* Mobile-specific cursor */
+@media (max-width: 768px) {
+    * {
+        cursor: default !important;
+    }
+    
+    .cursor, .cursor-glitter, .cursor-glitter-last {
+        display: none !important;
+    }
+    
+    .custom-cursor {
+        display: none !important;
+    }
+}

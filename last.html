@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Replace existing meta tag with this -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Our Beautiful Memories ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Music Player Styles */
+        #music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        
+        .music-btn {
+            background: rgba(255, 105, 180, 0.9);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.05);
+            background: rgba(255, 105, 180, 1);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+        }
+        
+        #music-icon {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .music-btn.muted #music-icon {
+            transform: scale(0.8);
+            opacity: 0.7;
+        }
+        
+        .music-text {
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .music-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .music-text {
+                display: none;
+            }
+        }
+
+
+/* Glitter Cursor for last.html */
+.cursor-glitter-last {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-glitter-inner-last {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,182,193,0.8) 0%, rgba(255,105,180,0.6) 30%, rgba(255,20,147,0.4) 70%, transparent 100%);
+    box-shadow: 
+        0 0 20px rgba(255, 182, 193, 0.8),
+        0 0 40px rgba(255, 105, 180, 0.6),
+        0 0 60px rgba(255, 20, 147, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.5);
+    animation: pulse 2s ease-in-out infinite alternate;
+}
+
+.cursor-glitter-trail-last {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,182,193,0.7) 50%, transparent 100%);
+    filter: blur(5px);
+    opacity: 0.7;
+    animation: trailEffect 0.5s linear infinite;
+}
+
+/* Glitter particles for last.html */
+.glitter-particle-last {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+    pointer-events: none;
+    z-index: 9998;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+}
+
+.glitter-container-last {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+}
+    </style>
+</head>
+
+<body>
+    <div class="cursor-glitter-last">
+    <div class="cursor-glitter-inner-last"></div>
+    <div class="cursor-glitter-trail-last"></div>
+</div>
+
+<div class="glitter-container-last"></div>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
+    </div>
+
+    <section class="welcome">
+        <h1>Our Beautiful Moments Together</h1>
+        <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
+    </section>
+
+    <div class="memory-container">
+       <div class="memory-card">
+    <img src="./image-1.jpg" alt="First Date" class="memory-img">
+    <div class="memory-date">Sweetest dream</div>
+    <div class="memory-caption">Meeting you was like a dream I never want to wake up from.<br>You are the best thing that has ever happened to me. 💜</div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-11.jpg" alt="Beach Day" class="memory-img">
+    <div class="memory-date">Together Vibes</div>
+    <div class="memory-caption">The best part of my life is doing every little thing with you.<br>I wouldn't want to share these vibes with anyone else. 💜</div>
+</div>
+
+<div class="adjust">
+    <div class="memory-card">
+        <img src="./image-12.jpg" alt="Movie Night" class="memory-img">
+        <div class="memory-date">Heart-melting Moments</div>
+        <div class="memory-caption">Every second with you is a memory I will treasure forever.<br>You melt my heart in ways words can't even describe. 💜</div>
+    </div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-4.jpg" alt="Movie Night" class="memory-img">
+    <div class="memory-date">Pretty Soul</div>
+    <div class="memory-caption">Your heart is even more beautiful than your radiant face.<br>The world is a much prettier place because you are in it. 💜</div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-5.jpg" alt="Movie Night" class="memory-img">
+    <div class="memory-date">Our First Click</div>
+    <div class="memory-caption">The moment I knew you were the one meant for me.<br>This photo was just the beginning of our beautiful story. 💜</div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-6.jpg" alt="Movie Night" class="memory-img">
+    <div class="memory-date">Our Rhythm</div>
+    <div class="memory-caption">Dancing through life at the exact same pace as you.<br>Everything just makes sense when we are side by side. 💜</div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-7.jpg" alt="Movie Night" class="memory-img">
+    <div class="memory-date">My Favorite</div>
+    <div class="memory-caption">Out of all the things in the world, you're my absolute favorite.<br>I would choose you over and over again, every single day. 💜</div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-8.jpg" alt="Movie Night" class="memory-img">
+    <div class="memory-date">Her Smile Says It All</div>
+    <div class="memory-caption">One smile from you makes my whole world feel bright.<br>Your happiness is the most important thing to me. 💜</div>
+</div>
+
+<div class="memory-card">
+    <img src="./image-9.jpg" alt="Movie Night" class="memory-img">
+    <div class="memory-date">My Girl</div>
+    <div class="memory-caption">So proud and happy to call you mine today and always.<br>I love you more than you will ever truly know. 💜</div>
+</div>
+    </div>
+
+    <section class="final-message">
+        <h2>Thank You for the Memories</h2>
+        <p>Every second unkooda irukura moments ellame oru beautiful kavithai madhiri.💫<br>
+            En vazhkkaiye un siripula dhaan bright-ah maarudhu, my dearmost pookutty. 💜<br>
+            On your birthday, I just wish for endless happiness, love, and success to come your way.🌸<br>
+        Inaiku mattum illa, eppovume nee dhaan en happiness-oda reason. 💜</p>
+        <p>Happy Birthday my soulmate! Keep shining and stay mine forever.✨Un mela naan vechiruka paasam eppovume kuraiyaadhu, love you di! 💜</p>
+        <a href="#" class="goodbye-btn">Until We Meet Again 💝</a>
+    </section>
+
+    <!-- Music Player -->
+    <div id="music-player">
+        <audio id="bg-music" loop>
+            <source src="music.mp3" type="audio/mpeg">
+            <source src="music-1.ogg" type="audio/ogg">
+        </audio>
+        <button id="music-toggle" class="music-btn">
+            <span id="music-icon">🎵</span>
+            <span class="music-text">Music: ON</span>
+        </button>
+    </div>
+
+    <script>
+        // Music Player Functionality with localStorage for last.html
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('bg-music');
+            const toggleBtn = document.getElementById('music-toggle');
+            const musicIcon = document.getElementById('music-icon');
+            const musicText = document.querySelector('.music-text');
+            
+            if (audio) {
+                // Set volume to 50%
+                audio.volume = 0.5;
+                
+                // Check localStorage for saved music state
+                const savedMusicState = localStorage.getItem('musicPlaying');
+                const savedCurrentTime = localStorage.getItem('musicCurrentTime');
+                
+                // If music was playing on previous page, continue from saved time
+                if (savedMusicState === 'true' && savedCurrentTime) {
+                    audio.currentTime = parseFloat(savedCurrentTime);
+                    const playPromise = audio.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            toggleBtn.classList.remove('muted');
+                            musicText.textContent = 'Music: ON';
+                            musicIcon.textContent = '🎵';
+                            console.log("Music resumed from:", savedCurrentTime, "seconds");
+                        }).catch(error => {
+                            // Autoplay was prevented
+                            toggleBtn.classList.add('muted');
+                            musicText.textContent = 'Click to Play';
+                            musicIcon.textContent = '🔇';
+                            toggleBtn.title = "Click to enable music";
+                        });
+                    }
+                } else if (savedMusicState === 'false') {
+                    // Music was paused on previous page
+                    toggleBtn.classList.add('muted');
+                    musicText.textContent = 'Music: OFF';
+                    musicIcon.textContent = '🔇';
+                } else {
+                    // First time on website, try to autoplay
+                    const playPromise = audio.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            localStorage.setItem('musicPlaying', 'true');
+                            toggleBtn.classList.remove('muted');
+                            musicText.textContent = 'Music: ON';
+                            musicIcon.textContent = '🎵';
+                        })
+                        .catch(error => {
+                            toggleBtn.classList.add('muted');
+                            musicText.textContent = 'Click to Play';
+                            musicIcon.textContent = '🔇';
+                            toggleBtn.title = "Click to enable music";
+                            localStorage.setItem('musicPlaying', 'false');
+                        });
+                    }
+                }
+                
+                // Save current time periodically (every 2 seconds)
+                setInterval(() => {
+                    if (!audio.paused) {
+                        localStorage.setItem('musicCurrentTime', audio.currentTime);
+                    }
+                }, 2000);
+                
+                // Toggle music on button click
+                toggleBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (audio.paused) {
+                        audio.play();
+                        toggleBtn.classList.remove('muted');
+                        musicText.textContent = 'Music: ON';
+                        musicIcon.textContent = '🎵';
+                        localStorage.setItem('musicPlaying', 'true');
+                    } else {
+                        audio.pause();
+                        toggleBtn.classList.add('muted');
+                        musicText.textContent = 'Music: OFF';
+                        musicIcon.textContent = '🔇';
+                        localStorage.setItem('musicPlaying', 'false');
+                    }
+                });
+                
+                // Save state when page is about to unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('musicCurrentTime', audio.currentTime);
+                    localStorage.setItem('musicPlaying', (!audio.paused).toString());
+                });
+            }
+
+            // Generate more hearts
+            for(let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.cssText = `
+                    --float-duration: ${Math.random() * 5 + 5}s;
+                    --delay: ${Math.random() * 5}s;
+                    --translate-x: ${Math.random() * 100 - 50}px;
+                    left: ${Math.random() * 100}vw;
+                `;
+                heart.textContent = ['💝','💖','💗','💓','💕'][Math.floor(Math.random()*5)];
+                document.querySelector('.floating-hearts').appendChild(heart);
+            }
+
+            // Goodbye button functionality
+            document.querySelector('.goodbye-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                alert("This beautiful journey ends here, but our story continues forever! 💕");
+            });
+        });
+
+
+
+        // Glittering Cursor Effects for last.html
+let mouseXLast = 0;
+let mouseYLast = 0;
+let cursorXLast = 0;
+let cursorYLast = 0;
+let trailXLast = 0;
+let trailYLast = 0;
+const speedLast = 0.1;
+const trailSpeedLast = 0.2;
+
+// Cursor following effect with smooth animation
+document.addEventListener('mousemove', (e) => {
+    mouseXLast = e.clientX;
+    mouseYLast = e.clientY;
+    
+    // Create glitter trail
+    createGlitterTrailLast();
+    
+    // Create occasional sparkle
+    if (Math.random() > 0.7) {
+        createSparkleLast(e.clientX, e.clientY);
+    }
+});
+
+// Smooth cursor animation for last.html
+function animateCursorLast() {
+    // Smooth main cursor movement
+    cursorXLast += (mouseXLast - cursorXLast) * speedLast;
+    cursorYLast += (mouseYLast - cursorYLast) * speedLast;
+    
+    // Smooth trail movement
+    trailXLast += (cursorXLast - trailXLast) * trailSpeedLast;
+    trailYLast += (cursorYLast - trailYLast) * trailSpeedLast;
+    
+    const cursor = document.querySelector('.cursor-glitter-last');
+    const cursorInner = document.querySelector('.cursor-glitter-inner-last');
+    const cursorTrail = document.querySelector('.cursor-glitter-trail-last');
+    
+    if (cursor && cursorInner && cursorTrail) {
+        cursor.style.left = cursorXLast - 20 + 'px';
+        cursor.style.top = cursorYLast - 20 + 'px';
+        
+        cursorInner.style.left = '50%';
+        cursorInner.style.top = '50%';
+        cursorInner.style.transform = `translate(-50%, -50%)`;
+        
+        cursorTrail.style.left = '50%';
+        cursorTrail.style.top = '50%';
+        cursorTrail.style.transform = `translate(-50%, -50%)`;
+    }
+    
+    requestAnimationFrame(animateCursorLast);
+}
+
+// Create glitter trail particles for last.html
+function createGlitterTrailLast() {
+    const glitterContainer = document.querySelector('.glitter-container-last');
+    if (!glitterContainer) return;
+    
+    // Create multiple glitter particles
+    const particleCount = Math.floor(Math.random() * 3) + 1;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'glitter-particle-last';
+        
+        // Random position near cursor
+        const offsetX = (Math.random() - 0.5) * 30;
+        const offsetY = (Math.random() - 0.5) * 30;
+        
+        particle.style.left = (mouseXLast + offsetX) + 'px';
+        particle.style.top = (mouseYLast + offsetY) + 'px';
+        
+        // Random color (pink/white/gold)
+        const colors = [
+            'rgba(255, 182, 193, 0.9)',
+            'rgba(255, 255, 255, 0.9)',
+            'rgba(255, 215, 0, 0.8)',
+            'rgba(255, 105, 180, 0.9)',
+            'rgba(230, 230, 250, 0.9)'
+        ];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Random size
+        const size = Math.random() * 3 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Random animation
+        const duration = Math.random() * 1 + 0.5;
+        particle.style.animation = `glitterFall ${duration}s linear forwards`;
+        
+        glitterContainer.appendChild(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode === glitterContainer) {
+                glitterContainer.removeChild(particle);
+            }
+        }, duration * 1000);
+    }
+}
+
+// Create sparkle effect for last.html
+function createSparkleLast(x, y) {
+    const glitterContainer = document.querySelector('.glitter-container-last');
+    if (!glitterContainer) return;
+    
+    const sparkleCount = Math.floor(Math.random() * 5) + 3;
+    
+    for (let i = 0; i < sparkleCount; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'glitter-particle-last';
+        
+        // Position around cursor
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * 40 + 10;
+        const sparkleX = x + Math.cos(angle) * radius;
+        const sparkleY = y + Math.sin(angle) * radius;
+        
+        sparkle.style.left = sparkleX + 'px';
+        sparkle.style.top = sparkleY + 'px';
+        
+        // Sparkle appearance
+        sparkle.style.background = 'radial-gradient(circle, white 30%, rgba(255, 255, 255, 0) 70%)';
+        sparkle.style.boxShadow = '0 0 15px 5px rgba(255, 255, 255, 0.9)';
+        sparkle.style.width = '8px';
+        sparkle.style.height = '8px';
+        
+        // Twinkle animation
+        const duration = Math.random() * 0.5 + 0.3;
+        sparkle.style.animation = `glitterTwinkle ${duration}s ease-in-out forwards`;
+        
+        glitterContainer.appendChild(sparkle);
+        
+        // Remove sparkle after animation
+        setTimeout(() => {
+            if (sparkle.parentNode === glitterContainer) {
+                glitterContainer.removeChild(sparkle);
+            }
+        }, duration * 1000);
+    }
+}
+
+// Enhanced glitter effect on scroll for last.html
+let lastScrollYLast = window.scrollY;
+let scrollTimerLast;
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = Math.abs(currentScrollY - lastScrollYLast);
+    
+    // Create more glitter when scrolling fast
+    if (scrollDelta > 5) {
+        createScrollGlitterLast();
+    }
+    
+    lastScrollYLast = currentScrollY;
+    
+    // Clear existing timer
+    clearTimeout(scrollTimerLast);
+    
+    // Set new timer
+    scrollTimerLast = setTimeout(() => {
+        // Reduce glitter after scrolling stops
+        const glitterContainer = document.querySelector('.glitter-container-last');
+        if (glitterContainer) {
+            const particles = glitterContainer.querySelectorAll('.glitter-particle-last');
+            particles.forEach(particle => {
+                particle.style.opacity = '0.5';
+            });
+        }
+    }, 100);
+});
+
+// Create glitter during scrolling for last.html
+function createScrollGlitterLast() {
+    const glitterContainer = document.querySelector('.glitter-container-last');
+    if (!glitterContainer) return;
+    
+    // Create glitter along the screen edges
+    const particleCount = Math.floor(Math.random() * 4) + 2;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'glitter-particle-last';
+        
+        // Random position along screen width
+        const x = Math.random() * window.innerWidth;
+        const y = window.scrollY + Math.random() * 100;
+        
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        
+        // Scroll glitter appearance
+        particle.style.background = 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,182,193,0.7) 100%)';
+        particle.style.boxShadow = '0 0 10px 3px rgba(255, 182, 193, 0.7)';
+        
+        // Random size
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Falling animation
+        const duration = Math.random() * 2 + 1;
+        const distance = Math.random() * 200 + 100;
+        
+        particle.style.animation = `none`;
+        particle.style.transition = `transform ${duration}s linear, opacity ${duration}s ease-out`;
+        particle.style.opacity = '1';
+        
+        glitterContainer.appendChild(particle);
+        
+        // Animate falling
+        setTimeout(() => {
+            particle.style.transform = `translateY(${distance}px)`;
+            particle.style.opacity = '0';
+        }, 10);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode === glitterContainer) {
+                glitterContainer.removeChild(particle);
+            }
+        }, duration * 1000);
+    }
+}
+
+// Enhanced glitter on button hover for last.html
+document.querySelectorAll('button, .memory-card, .goodbye-btn').forEach(element => {
+    element.addEventListener('mouseenter', (e) => {
+        // Create burst of glitter on hover
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+                const rect = e.target.getBoundingClientRect();
+                const x = rect.left + Math.random() * rect.width;
+                const y = rect.top + Math.random() * rect.height;
+                createSparkleLast(x, y);
+            }, i * 50);
+        }
+        
+        // Add glow effect to cursor
+        const cursorInner = document.querySelector('.cursor-glitter-inner-last');
+        if (cursorInner) {
+            cursorInner.style.boxShadow = 
+                '0 0 30px rgba(255, 182, 193, 1), ' +
+                '0 0 60px rgba(255, 105, 180, 0.9), ' +
+                '0 0 90px rgba(255, 20, 147, 0.7)';
+        }
+    });
+    
+    element.addEventListener('mouseleave', () => {
+        // Restore normal cursor glow
+        const cursorInner = document.querySelector('.cursor-glitter-inner-last');
+        if (cursorInner) {
+            cursorInner.style.boxShadow = 
+                '0 0 20px rgba(255, 182, 193, 0.8), ' +
+                '0 0 40px rgba(255, 105, 180, 0.6), ' +
+                '0 0 60px rgba(255, 20, 147, 0.4), ' +
+                'inset 0 0 20px rgba(255, 255, 255, 0.5)';
+        }
+    });
+});
+
+// Start cursor animation when page loads
+window.addEventListener('load', () => {
+    animateCursorLast();
+});
+    </script>
+</body>
+</html>
