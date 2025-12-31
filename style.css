@@ -137,6 +137,13 @@ h1 {
     margin-bottom: 2rem;
     opacity: 0;
 }
+h3 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1rem;
+    color: #9e17cb;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+    margin-bottom: 2rem;
+}
 
 .greeting {
     font-size: 1.5rem;
