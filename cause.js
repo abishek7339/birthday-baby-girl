@@ -495,7 +495,7 @@ shuffleButton.addEventListener('click', () => {
 
 // Floating elements function
 function createFloatingElement() {
-    const elements = ['🌸', '✨', '💖', '🦋', '⭐'];
+    const elements = ['🌸', '✨', '💖', '🦋', '⭐','💙', '💜', '🖤', '🤍', '🤎','🌺','🦋','🕊️'];
     const element = document.createElement('div');
     element.className = 'floating';
     element.textContent = elements[Math.floor(Math.random() * elements.length)];
