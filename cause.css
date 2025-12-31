@@ -94,7 +94,7 @@ h1 {
 }
 
 .shuffle-button {
-    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    background: linear-gradient(45deg, #7e0340, #4f0241);
     border: none;
     border-radius: 50px;
     padding: 1rem 2rem;
@@ -159,6 +159,7 @@ h1 {
     .reason-card { margin: 1rem; }
     .reason-text { font-size: 1rem; }
 }
+
 .shuffle-button {
     background: linear-gradient(45deg, #ff69b4, #ff99cc);
     border: none;
@@ -193,12 +194,32 @@ h1 {
     opacity: 0.7;
 }
 
-/* Music Player Styles for cause.css */
-#music-player {
+/* New Music Control Styles */
+#music-control-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 10000;
+    text-align: center;
+}
+
+#unlock-music-btn {
+    background: linear-gradient(45deg, #25D366, #128C7E); /* Green color */
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+#unlock-music-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
 }
 
 .music-btn {
@@ -237,19 +258,6 @@ h1 {
 .music-text {
     font-weight: 600;
 }
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .music-btn {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-    
-    .music-text {
-        display: none;
-    }
-}
-
 
 /* Glitter Cursor for cause.html */
 .cursor-glitter {
@@ -357,9 +365,8 @@ h1 {
     }
 }
 
-
 /* Mobile touch improvements */
-button, .cta-button, .shuffle-button, .goodbye-btn, .music-btn {
+button, .cta-button, .shuffle-button, .goodbye-btn, .music-btn, #unlock-music-btn {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
 }
@@ -383,22 +390,27 @@ html {
         transform: none;
     }
     
-    button:hover, .cta-button:hover, .shuffle-button:hover {
+    button:hover, .cta-button:hover, .shuffle-button:hover, .music-btn:hover, #unlock-music-btn:hover {
         transform: none;
     }
 }
 
 /* Mobile-specific cursor */
 @media (max-width: 768px) {
+    .music-btn, #unlock-music-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .music-text {
+        display: none;
+    }
+    
     * {
         cursor: default !important;
     }
     
-    .cursor, .cursor-glitter, .cursor-glitter-last {
-        display: none !important;
-    }
-    
-    .custom-cursor {
+    .cursor, .cursor-glitter, .cursor-glitter-last, .custom-cursor {
         display: none !important;
     }
 }

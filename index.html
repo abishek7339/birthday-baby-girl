@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Replace existing meta tag with this -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Happy Birthday</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -22,16 +21,25 @@
         <button class="cta-button">Click to Enter Our World 💕</button>
     </div>
 
-    <!-- Music Player -->
-    <div id="music-player">
-        <audio id="bg-music" loop>
+    <!-- New Music Player with Unlock Button -->
+    <div id="music-control-container">
+        <!-- Initial Button to start music -->
+        <button id="unlock-music-btn" class="unlock-btn">
+            🎵 Click to Start Music
+        </button>
+        
+        <!-- Main control panel (hidden until first click) -->
+        <div id="music-control-panel" style="display: none;">
+            <button id="music-toggle" class="music-btn">
+                <span id="music-icon">🎵</span>
+                <span class="music-text">Music: ON</span>
+            </button>
+        </div>
+        
+        <audio id="bg-music" loop preload="auto">
             <source src="music.mp3" type="audio/mpeg">
             <source src="music-1.ogg" type="audio/ogg">
         </audio>
-        <button id="music-toggle" class="music-btn">
-            <span id="music-icon">🎵</span>
-            <span class="music-text">Music: ON</span>
-        </button>
     </div>
 
     <script src="script.js"></script>

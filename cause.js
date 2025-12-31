@@ -1,4 +1,4 @@
-// // Glittering Cursor Effects for cause.html
+// Glittering Cursor Effects for cause.html
 let mouseX = 0;
 let mouseY = 0;
 let cursorX = 0;
@@ -267,97 +267,112 @@ window.addEventListener('load', () => {
     });
 });
 
-// Music Player Initialization with localStorage
+// New Music Player with Auto-play After Unlock
 function initializeMusicPlayer() {
     const audio = document.getElementById('bg-music');
+    const unlockBtn = document.getElementById('unlock-music-btn');
+    const controlPanel = document.getElementById('music-control-panel');
     const toggleBtn = document.getElementById('music-toggle');
     const musicIcon = document.getElementById('music-icon');
     const musicText = document.querySelector('.music-text');
     
-    if (audio) {
-        // Set volume to 50%
-        audio.volume = 0.5;
+    // Set volume to 50%
+    audio.volume = 0.5;
+    
+    // Check if music was already unlocked (using localStorage)
+    const musicUnlocked = localStorage.getItem('musicUnlocked');
+    const savedMusicState = localStorage.getItem('musicPlaying');
+    const savedCurrentTime = localStorage.getItem('musicCurrentTime');
+    
+    // If music was previously unlocked on another page
+    if (musicUnlocked === 'true') {
+        // Hide unlock button, show control panel
+        unlockBtn.style.display = 'none';
+        controlPanel.style.display = 'block';
         
-        // Check localStorage for saved music state
-        const savedMusicState = localStorage.getItem('musicPlaying');
-        const savedCurrentTime = localStorage.getItem('musicCurrentTime');
-        
-        // If music was playing on previous page, continue from saved time
-        if (savedMusicState === 'true' && savedCurrentTime) {
+        // Restore playback state
+        if (savedCurrentTime) {
             audio.currentTime = parseFloat(savedCurrentTime);
+        }
+        
+        // If music was playing, start it automatically
+        if (savedMusicState === 'true') {
             const playPromise = audio.play();
-            
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     toggleBtn.classList.remove('muted');
                     musicText.textContent = 'Music: ON';
                     musicIcon.textContent = '🎵';
-                }).catch(error => {
-                    // Autoplay was prevented
+                }).catch(() => {
+                    // Autoplay blocked, show muted state
                     toggleBtn.classList.add('muted');
                     musicText.textContent = 'Click to Play';
                     musicIcon.textContent = '🔇';
-                    toggleBtn.title = "Click to enable music";
                 });
             }
-        } else if (savedMusicState === 'false') {
+        } else {
             // Music was paused
             toggleBtn.classList.add('muted');
             musicText.textContent = 'Music: OFF';
             musicIcon.textContent = '🔇';
-        } else {
-            // First time on this page, try to autoplay
-            const playPromise = audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    localStorage.setItem('musicPlaying', 'true');
-                    toggleBtn.classList.remove('muted');
-                    musicText.textContent = 'Music: ON';
-                    musicIcon.textContent = '🎵';
-                })
-                .catch(error => {
-                    toggleBtn.classList.add('muted');
-                    musicText.textContent = 'Click to Play';
-                    musicIcon.textContent = '🔇';
-                    toggleBtn.title = "Click to enable music";
-                    localStorage.setItem('musicPlaying', 'false');
-                });
-            }
         }
-        
-        // Save current time periodically
-        setInterval(() => {
-            if (!audio.paused) {
-                localStorage.setItem('musicCurrentTime', audio.currentTime);
-            }
-        }, 2000);
-        
-        // Toggle music on button click
-        toggleBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            if (audio.paused) {
-                audio.play();
-                toggleBtn.classList.remove('muted');
-                musicText.textContent = 'Music: ON';
-                musicIcon.textContent = '🎵';
-                localStorage.setItem('musicPlaying', 'true');
-            } else {
-                audio.pause();
-                toggleBtn.classList.add('muted');
-                musicText.textContent = 'Music: OFF';
-                musicIcon.textContent = '🔇';
-                localStorage.setItem('musicPlaying', 'false');
-            }
-        });
-        
-        // Save state when page is about to unload
-        window.addEventListener('beforeunload', () => {
-            localStorage.setItem('musicCurrentTime', audio.currentTime);
-            localStorage.setItem('musicPlaying', (!audio.paused).toString());
-        });
+    } else {
+        // First-time visitor - show unlock button
+        unlockBtn.style.display = 'block';
+        controlPanel.style.display = 'none';
     }
+    
+    // Unlock Music Button Click
+    unlockBtn.addEventListener('click', function() {
+        // Start playing music
+        audio.play().then(() => {
+            // Hide unlock button, show control panel
+            unlockBtn.style.display = 'none';
+            controlPanel.style.display = 'block';
+            
+            // Save unlocked state
+            localStorage.setItem('musicUnlocked', 'true');
+            localStorage.setItem('musicPlaying', 'true');
+            
+            // Update button state
+            toggleBtn.classList.remove('muted');
+            musicText.textContent = 'Music: ON';
+            musicIcon.textContent = '🎵';
+        }).catch(error => {
+            console.log("Autoplay failed:", error);
+            alert("Please allow autoplay in your browser settings for the best experience!");
+        });
+    });
+    
+    // Toggle Music Button
+    toggleBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            toggleBtn.classList.remove('muted');
+            musicText.textContent = 'Music: ON';
+            musicIcon.textContent = '🎵';
+            localStorage.setItem('musicPlaying', 'true');
+        } else {
+            audio.pause();
+            toggleBtn.classList.add('muted');
+            musicText.textContent = 'Music: OFF';
+            musicIcon.textContent = '🔇';
+            localStorage.setItem('musicPlaying', 'false');
+        }
+    });
+    
+    // Save current time periodically
+    setInterval(() => {
+        if (!audio.paused) {
+            localStorage.setItem('musicCurrentTime', audio.currentTime);
+        }
+    }, 2000);
+    
+    // Save state when leaving page
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('musicCurrentTime', audio.currentTime);
+        localStorage.setItem('musicPlaying', (!audio.paused).toString());
+    });
 }
 
 // Initialize music player when page loads
@@ -444,13 +459,6 @@ function displayNewReason() {
                     shuffleButton.textContent = "Enter Our Storylane 💫";
                     shuffleButton.classList.add('story-mode');
                     shuffleButton.addEventListener('click', () => {
-                        // Save music state before navigation
-                        const audio = document.getElementById('bg-music');
-                        if (audio) {
-                            localStorage.setItem('musicCurrentTime', audio.currentTime);
-                            localStorage.setItem('musicPlaying', (!audio.paused).toString());
-                        }
-                        
                         gsap.to('body', {
                             opacity: 0,
                             duration: 1,

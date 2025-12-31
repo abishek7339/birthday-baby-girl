@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Replace existing meta tag with this -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Why You're My Best Friend! 💖</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="./cause.css">
@@ -11,11 +10,12 @@
 <body>
 
     <div class="cursor-glitter">
-    <div class="cursor-glitter-inner"></div>
-    <div class="cursor-glitter-trail"></div>
-</div>
+        <div class="cursor-glitter-inner"></div>
+        <div class="cursor-glitter-trail"></div>
+    </div>
 
-<div class="glitter-container-cause"></div>
+    <div class="glitter-container-cause"></div>
+    
     <div class="custom-cursor">
         <svg viewBox="0 0 24 24">
             <path fill="#ff69b4" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -38,16 +38,25 @@
         </div>
     </div>
 
-    <!-- Music Player -->
-    <div id="music-player">
-        <audio id="bg-music" loop>
+    <!-- New Music Player with Unlock Button -->
+    <div id="music-control-container">
+        <!-- Initial Button to start music -->
+        <button id="unlock-music-btn" class="unlock-btn">
+            🎵 Click to Start Music
+        </button>
+        
+        <!-- Main control panel (hidden until first click) -->
+        <div id="music-control-panel" style="display: none;">
+            <button id="music-toggle" class="music-btn">
+                <span id="music-icon">🎵</span>
+                <span class="music-text">Music: ON</span>
+            </button>
+        </div>
+        
+        <audio id="bg-music" loop preload="auto">
             <source src="music.mp3" type="audio/mpeg">
             <source src="music-1.ogg" type="audio/ogg">
         </audio>
-        <button id="music-toggle" class="music-btn">
-            <span id="music-icon">🎵</span>
-            <span class="music-text">Music: ON</span>
-        </button>
     </div>
 
     <script src="cause.js"></script>
